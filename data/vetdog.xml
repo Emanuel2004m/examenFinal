@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: https://jaahosting.com/sqldesigner/ -->
+<sql>
+<datatypes db="mysql">
+	<group label="Numeric" color="rgb(238,238,170)">
+		<type label="Integer" length="0" sql="INTEGER" quote=""/>
+	 	<type label="TINYINT" length="0" sql="TINYINT" quote=""/>
+	 	<type label="SMALLINT" length="0" sql="SMALLINT" quote=""/>
+	 	<type label="MEDIUMINT" length="0" sql="MEDIUMINT" quote=""/>
+	 	<type label="INT" length="0" sql="INT" quote=""/>
+		<type label="BIGINT" length="0" sql="BIGINT" quote=""/>
+		<type label="Decimal" length="1" sql="DECIMAL" re="DEC" quote=""/>
+		<type label="Single precision" length="0" sql="FLOAT" quote=""/>
+		<type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
+	</group>
+
+	<group label="Character" color="rgb(255,200,200)">
+		<type label="Char" length="1" sql="CHAR" quote="'"/>
+		<type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
+		<type label="Text" length="0" sql="MEDIUMTEXT" re="TEXT" quote="'"/>
+		<type label="Binary" length="1" sql="BINARY" quote="'"/>
+		<type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
+		<type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
+	</group>
+
+	<group label="Date &amp; Time" color="rgb(200,255,200)">
+		<type label="Date" length="0" sql="DATE" quote="'"/>
+		<type label="Time" length="0" sql="TIME" quote="'"/>
+		<type label="Datetime" length="0" sql="DATETIME" quote="'"/>
+		<type label="Year" length="0" sql="YEAR" quote=""/>
+		<type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
+	</group>
+	
+	<group label="Miscellaneous" color="rgb(200,200,255)">
+		<type label="ENUM" length="1" sql="ENUM" quote=""/>
+		<type label="SET" length="1" sql="SET" quote=""/>
+		<type label="Bit" length="0" sql="bit" quote=""/>
+	</group>
+</datatypes><table x="1102" y="235" name="clientes">
+<row name="idCliente" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="nomCliente" null="1" autoincrement="0">
+<datatype>VARCHAR(45)</datatype>
+<default>NULL</default></row>
+<row name="cni" null="1" autoincrement="0">
+<datatype>VARCHAR(45)</datatype>
+<default>NULL</default></row>
+<row name="direccion" null="1" autoincrement="0">
+<datatype>VARCHAR(150)</datatype>
+<default>NULL</default></row>
+<row name="telefono" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>idCliente</part>
+</key>
+<key type="UNIQUE" name="">
+<part>cni</part>
+</key>
+</table>
+<table x="600" y="202" name="consultas">
+<row name="idConsultas" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="fechaConsulta" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="diagnostico" null="1" autoincrement="0">
+<datatype>VARCHAR(150)</datatype>
+<default>NULL</default></row>
+<row name="tratamiento" null="1" autoincrement="0">
+<datatype>VARCHAR(150)</datatype>
+<default>NULL</default></row>
+<row name="idVeterinario" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="veterinarios" row="idVeterinario" />
+</row>
+<row name="idMascota" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="mascotas" row="idMascota" />
+</row>
+<row name="idUsuario" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="usuarios" row="idUsuario" />
+</row>
+<key type="PRIMARY" name="">
+<part>idConsultas</part>
+</key>
+</table>
+<table x="145" y="300" name="veterinarios">
+<row name="idVeterinario" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="nomVeterinario" null="1" autoincrement="0">
+<datatype>VARCHAR(45)</datatype>
+<default>NULL</default></row>
+<row name="cni" null="1" autoincrement="0">
+<datatype>VARCHAR(45)</datatype>
+<default>NULL</default></row>
+<row name="telefono" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="idEspecialidad" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="especialidad" row="idEspecialidad" />
+</row>
+<key type="PRIMARY" name="">
+<part>idVeterinario</part>
+</key>
+<key type="UNIQUE" name="">
+<part>cni</part>
+</key>
+</table>
+<table x="899" y="7" name="mascotas">
+<row name="idMascota" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="nomMascota" null="1" autoincrement="0">
+<datatype>VARCHAR(45)</datatype>
+<default>NULL</default></row>
+<row name="servicio" null="1" autoincrement="0">
+<datatype>VARCHAR(45)</datatype>
+<default>NULL</default></row>
+<row name="idTipo" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="tipoMascota" row="idTipo" />
+</row>
+<row name="idRaza" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="raza" row="idRaza" />
+</row>
+<row name="idCliente" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="clientes" row="idCliente" />
+</row>
+<key type="PRIMARY" name="">
+<part>idMascota</part>
+</key>
+</table>
+<table x="1494" y="655" name="usuarios">
+<row name="idUsuario" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="alias" null="1" autoincrement="0">
+<datatype>VARCHAR(45)</datatype>
+<default>NULL</default></row>
+<row name="clave" null="1" autoincrement="0">
+<datatype>VARCHAR(45)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>idUsuario</part>
+</key>
+</table>
+<table x="891" y="618" name="roles">
+<row name="idRol" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="descripcion" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>idRol</part>
+</key>
+<key type="UNIQUE" name="">
+<part>descripcion</part>
+</key>
+</table>
+<table x="466" y="616" name="permisos">
+<row name="idPermisos" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="descripcion" null="1" autoincrement="0">
+<datatype>VARCHAR(45)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>idPermisos</part>
+</key>
+<key type="UNIQUE" name="">
+<part>descripcion</part>
+</key>
+</table>
+<table x="1101" y="120" name="raza">
+<row name="idRaza" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="descripcion" null="1" autoincrement="0">
+<datatype>VARCHAR(45)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>idRaza</part>
+</key>
+<key type="UNIQUE" name="">
+<part>descripcion</part>
+</key>
+</table>
+<table x="401" y="401" name="especialidad">
+<row name="idEspecialidad" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="descripcion" null="1" autoincrement="0">
+<datatype>VARCHAR(45)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>idEspecialidad</part>
+</key>
+<key type="UNIQUE" name="">
+<part>descripcion</part>
+</key>
+</table>
+<table x="1101" y="20" name="tipoMascota">
+<row name="idTipo" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="descripcion" null="1" autoincrement="0">
+<datatype>VARCHAR(45)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>idTipo</part>
+</key>
+<key type="UNIQUE" name="">
+<part>descripcion</part>
+</key>
+</table>
+<table x="659" y="616" name="rolesPermisos">
+<row name="idPermisos" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="permisos" row="idPermisos" />
+</row>
+<row name="idRol" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="roles" row="idRol" />
+</row>
+<key type="PRIMARY" name="">
+<part>idPermisos</part>
+<part>idRol</part>
+</key>
+</table>
+<table x="1038" y="618" name="usuarioRoles">
+<row name="idUsuario" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="usuarios" row="idUsuario" />
+</row>
+<row name="idRol" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="roles" row="idRol" />
+</row>
+<key type="PRIMARY" name="">
+<part>idUsuario</part>
+<part>idRol</part>
+</key>
+</table>
+<table x="1273" y="302" name="facturas">
+<row name="numero" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="fecha" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="idUsuario" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="usuarios" row="idUsuario" />
+</row>
+<row name="idCliente" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="clientes" row="idCliente" />
+</row>
+<row name="idFormaPago" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="formapago" row="idFormaPago" />
+</row>
+<row name="anulada" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>numero</part>
+</key>
+</table>
+<table x="1103" y="397" name="formapago">
+<row name="idFormaPago" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="descripcion" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>idFormaPago</part>
+</key>
+<key type="UNIQUE" name="">
+<part>descripcion</part>
+</key>
+</table>
+<table x="324" y="102" name="detallefacturas">
+<row name="numero" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="facturas" row="numero" />
+</row>
+<row name="idConsultas" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="consultas" row="idConsultas" />
+</row>
+<row name="importe" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>numero</part>
+<part>idConsultas</part>
+</key>
+</table>
+</sql>
